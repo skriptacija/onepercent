@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monthly Profits - Growth (%)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      text-align: center;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      width: 75%;
+      max-width: 600px;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 15px;
+      font-size: 1.5em; /* Smanjen naslov */
+    }
+    table {
+      width: 70%;
+      margin: 15px auto;
+      border-collapse: collapse;
+      background: linear-gradient(140deg, #bcb775 0%, #504f62 100%);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+      color: white;
+      font-size: 0.9em; /* Smanjen font */
+    }
+    th {
+      background-color: #333;
+      font-size: 1em; /* Manji font za naslove */
+    }
+    tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.2); /* Parni redovi sa sjenom */
+    }
+    tr:hover {
+      background-color: rgba(255, 255, 255, 0.3); /* Efekt hovera */
+    }
+    .growth {
+      font-weight: bold;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    /* Stil za fiksirani gumb */
+    .button {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: linear-gradient(140deg, #bcb775 0%, #504f62 100%);
+      color: #fff;
+      font-size: 12px; /* Smanjen font */
+      padding: 6px 15px; /* Manji padding */
+      border-radius: 6px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      z-index: 9999;
+      transition: opacity 0.3s ease-out;
+    }
+    .button:hover {
+      opacity: 0.8; /* Efekt na hover */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Monthly Profits Growth (%)</h1>
+    <table id="profitsTable">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Growth (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data will be populated here -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Example Button, fixed on top right -->
+  <button class="button">Click Me</button>
+
+  <script>
+    // Zamijeni ovo sa URL-om koji si dobio pri deploy-u Apps Script web aplikacije
+    const apiUrl = 'https://script.google.com/macros/s/AKfycbygf9LdOsa9C0aGASlTJgSkZZBHjwKdcbE29YO0nXm-rwu5I66TohOUOgBLXsfP3Qg/exec'; // Ovdje stavi svoj URL od Apps Script Web App
+
+    // Dohvati podatke s API-a i popuni tablicu
+    function fetchData() {
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          const tableBody = document.querySelector('#profitsTable tbody');
+          tableBody.innerHTML = '';  // Očisti postojeće redove
+
+          // Popuni tablicu s podacima
+          data.forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>${row.month}</td>
+              <td class="growth">${row.growth}%</td>
+            `;
+            tableBody.appendChild(tr);
+          });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    }
+
+    // Pokreni funkciju za dohvat podataka kad stranica učita
+    window.onload = fetchData;
+  </script>
+
+</body>
+</html>
