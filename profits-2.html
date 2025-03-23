@@ -7,6 +7,13 @@
     <link rel="icon" href="https://i.imgur.com/Kp2glQp.png" type="image/x-icon">
     <meta name='robots' content='max-image-preview:large' />
 
+		<script>
+    if (window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("profits-2.html")) {
+        history.replaceState({}, "", "/");
+    }
+</script>
+
+	
     <script>
         if (window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("login.html")) {
             history.replaceState({}, "", "/");
