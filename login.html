@@ -1,0 +1,512 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>one-percent.trade</title>
+    <link rel="icon" href="https://i.imgur.com/Kp2glQp.png" type="image/x-icon">
+    <meta name='robots' content='max-image-preview:large' />
+	
+	<script>
+    if (window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("login.html")) {
+        history.replaceState({}, "", "/");
+    }
+</script>
+
+<video autoplay muted loop id="background-video">
+    <source src="wp-content/uploads/2023/03/5e0082692242619df5246e72cf_v2.mp4" type="video/mp4">
+</video>
+
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+    background-color: #181818;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    transition: opacity 1s ease;
+}
+
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1; /* Postavlja video iza ostalog sadržaja */
+}
+
+        /* General container style */
+        .container {
+            background-color: #1c1c1c;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            backdrop-filter: blur(10px); /* Add a blur effect to the background */
+        }
+
+        /* Styling for input fields */
+        .container input {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #555;
+            margin: 10px 0;
+            padding: 12px 15px;
+            font-size: 14px;
+            border-radius: 8px;
+            width: 100%;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .container input:focus {
+            border-color: #ffffff;
+            background-color: #444;
+        }
+
+        /* Styling for buttons */
+        .container button {
+            background: linear-gradient(140deg, #999999 0%, #504f62 100%); /* Static gradient */
+            color: #fff;
+            font-size: 14px;
+            padding: 12px 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 10px;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            max-width: 250px;
+            transition: background 0.3s ease;  /* No hover background transition */
+        }
+
+        .container button:hover {
+            background: linear-gradient(140deg, #999999 0%, #504f62 100%);  /* Keep the same gradient on hover */
+        }
+
+        button.logout {
+            background-color: #000;
+            color: #fff;
+            width: 46%;
+        }
+
+        .userData {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #ddd;
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Razmak između kutija */
+        }
+
+        #updateForm {
+            display: none;
+            width: 100%;
+        }
+
+        #downloadPdfBtn {
+            margin-top: 10px;
+            background-color: #e74c3c;
+            border-radius: 8px;
+            padding: 12px;
+            text-transform: uppercase;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            max-width: 250px;
+            transition: background-color 0.3s ease;
+            display: block;  /* Make the button a block element for centering */
+            margin-left: auto;  /* Center horizontally */
+            margin-right: auto; /* Center horizontally */
+        }
+
+        #downloadPdfBtn:hover {
+            background-color: #c0392b;
+        }
+		
+		        #downloadPdfBtn2 {
+            margin-top: 10px;
+            background-color: #e74c3c;
+            border-radius: 8px;
+            padding: 12px;
+            text-transform: uppercase;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            max-width: 250px;
+            transition: background-color 0.3s ease;
+            display: block;  /* Make the button a block element for centering */
+            margin-left: auto;  /* Center horizontally */
+            margin-right: auto; /* Center horizontally */
+        }
+
+        #downloadPdfBtn2:hover {
+            background-color: #c0392b;
+        }
+
+        /* Dashboard specific styles */
+        #dashboardSection {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        /* Back to website button (No hover effect change) */
+        .backButton {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(140deg, #999999 0%, #504f62 100%);
+            color: #fff;
+            font-size: 14px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        /* Keep the background gradient the same when hovered */
+        .backButton:hover {
+            background: linear-gradient(140deg, #999999 0%, #504f62 100%);
+        }
+
+        /* Styling for headers */
+        h2 {
+            color: #fff;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .userData p {
+            margin: 15px 0;
+            font-size: 14px;
+            color: #ddd;
+            background-color: #2d2d2d; /* Dodaj pozadinsku boju za svaku kutiju */
+            padding: 15px;
+            border-radius: 10px; /* Zaobljene ivice */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Dodaj senku oko kutija */
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        body, .container, .backButton, .userData, .logout {
+            animation: fadeIn 1s ease;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- "Back to Website" button -->
+<button class="backButton" onclick="goBackToWebsite()">Back to Website</button>
+
+<!-- Login Form -->
+<div id="loginSection" class="container">
+    <a href="profits.html" class="bubble">Monthly Profits</a>
+
+    <h2>Log In</h2>
+    <br>
+    <p style="font-size: 12px; color: #888;">Log in with the details you received after purchase in your email to access the dashboard</p>
+    <br>
+    <input type="text" id="username" placeholder="Email" required autocomplete="off">
+    <input type="password" id="password" placeholder="Password" required autocomplete="off">
+    <button onclick="login()">Log In</button>
+</div>
+
+<style>
+    .bubble {
+        position: absolute;
+        top: -40px;
+		text-decoration: none;
+        left: 130px;
+        background: linear-gradient(140deg, #999999 0%, #504f62 100%);
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        animation: fadeIn 1s ease-in-out;
+    }
+</style>
+
+
+<!-- Dashboard -->
+<div id="dashboardSection" class="container" style="display: none;">
+    <h2>Welcome to Your Dashboard!</h2>
+    
+    <p id="welcomeText" style="font-size: 12px; color: #bbb;">To get started and begin your journey towards earning, please click the <b>Step Guide</b> and follow the steps</p>
+    <p id="successText" style="font-size: 12px; color: #bbb;">We're excited to have you on board and look forward to seeing your success</p>
+
+    <div id="userData" class="userData"></div>
+    <button id="editButton" onclick="editData()">Your Account</button>
+	
+    <div id="updateForm">
+        <input type="email" id="email" placeholder="Email" required autocomplete="off">
+        <input type="text" id="mt4id" placeholder="MT4 Account ID" required autocomplete="off">
+        <input type="password" id="passwordField" placeholder="MT4 Account Password" required autocomplete="off">
+        <input type="text" id="server" placeholder="Server" required autocomplete="off">
+		<br><br>
+		<p id="successText" style="font-size: 12px; color: #bbb;">Before saving your details, please ensure the information you’ve provided is correct. Our team will verify the data, and once confirmed, we will begin working to grow your capital. Thank you for placing your trust in us</p>
+        <br>
+        <button onclick="updateInfo()">Save</button>
+    </div>
+
+    <button id="downloadPdfBtn" onclick="window.location.href='https://google.com'">Step Guide</button>
+	<button id="downloadPdfBtn2" onclick="window.location.href='https://billing.stripe.com/p/login/dR616VbFB6y30BWdQQ'">Manage Subscription</button>
+
+    <button class="logout" onclick="logout()">Log Out</button>
+	
+</div>
+
+<script>
+    const users = [
+        { username: "13", password: "1" },
+        { username: "12", password: "1" },
+        { username: "", password: "" },
+        { username: "", password: "" },
+        { username: "", password: "" },
+        { username: "", password: "" },
+        { username: "", password: "" },
+    ];
+
+    let currentUser = null;
+
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // Check if both fields are filled
+        if (!username || !password) {
+            alert("Please enter both email and password.");
+            return; // Stop the function if user info is not provided
+        }
+
+        const user = users.find(u => u.username === username && u.password === password);
+
+        if (user) {
+            currentUser = username;
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('dashboardSection').style.display = 'block';
+
+            // Always go to dashboard when logged in
+            showDashboard();
+            loadUserData(); // Load the data specific to the logged-in user
+        } else {
+            alert("Incorrect email or password");
+        }
+    }
+
+    function updateInfo() {
+        const email = document.getElementById('email').value;
+        const mt4id = document.getElementById('mt4id').value;
+        const password = document.getElementById('passwordField').value;
+        const server = document.getElementById('server').value;
+
+        if (!email || !mt4id || !password || !server) {
+            alert("All fields are required!");
+            return;
+        }
+
+        // Store the user data specific to the current logged-in user
+        const userData = { email, mt4id, password, server };
+        localStorage.setItem(currentUser, JSON.stringify(userData));
+
+        fetch('https://script.google.com/macros/s/AKfycbxNO3OybmwI3QFFNzJnVxm1_u5Fo6w6Mr5OJ3sdpr4ZD69c9tSbKfyewyZtttsxvbCN/exec', {
+            method: 'POST',
+            body: new URLSearchParams({
+                'Username': currentUser,
+                'Email': email,
+                'MT4ID': mt4id,
+                'Password': password,
+                'Server': server
+            })
+        })
+        .then(response => response.text())
+        .then(() => {
+            alert('Data has been updated!');
+            loadUserData();
+            showDashboard();
+        })
+        .catch(error => {
+            alert('An error occurred: ' + error);
+        });
+    }
+
+    function loadUserData() {
+        // Retrieve the data of the current user from localStorage
+        const userData = JSON.parse(localStorage.getItem(currentUser));
+
+        if (userData) {
+            document.getElementById('userData').innerHTML = ` 
+                <p><strong>Email:</strong> ${userData.email}</p>
+                <p><strong>MT4 Account ID:</strong> ${userData.mt4id}</p>
+                <p><strong>MT4 Account Password:</strong> ${userData.password}</p>
+                <p><strong>Server:</strong> ${userData.server}</p>
+            `;
+        } else {
+            document.getElementById('userData').innerHTML = "<p>No data available</p>";
+        }
+    }
+
+    function editData() {
+        // Hide the current dashboard content
+        document.getElementById('dashboardSection').querySelector('h2').style.display = 'none';
+        document.getElementById('userData').style.display = 'none';
+        document.getElementById('updateForm').style.display = 'block';
+
+        // Hide the Download PDF File button
+        document.getElementById('downloadPdfBtn').style.display = 'none';
+		document.getElementById('downloadPdfBtn2').style.display = 'none';
+
+        // Hide welcome and success text
+        document.getElementById('welcomeText').style.display = 'none';
+        document.getElementById('successText').style.display = 'none';
+
+        document.getElementById('email').value = "";
+        document.getElementById('mt4id').value = "";
+        document.getElementById('passwordField').value = "";
+        document.getElementById('server').value = "";
+
+        // Change button text to 'Save'
+        document.getElementById('editButton').innerText = "Save";
+        document.getElementById('editButton').setAttribute("onclick", "saveData()"); // Change to save function
+
+        // Change the "Dashboard" button
+        const dashboardButton = document.getElementById('editButton');
+        dashboardButton.innerText = "Dashboard"; // Change the top button to "Dashboard"
+        dashboardButton.setAttribute("onclick", "showDashboard()");  // Redirect to dashboard
+    }
+
+    function saveData() {
+        // Save the updated user data
+        updateInfo();
+        
+        // Change button back to "Your Account" after saving
+        document.getElementById('editButton').innerText = "Your Account";
+        document.getElementById('editButton').setAttribute("onclick", "editData()");
+    }
+
+    function showDashboard() {
+        document.getElementById('dashboardSection').querySelector('h2').style.display = 'block';
+        document.getElementById('userData').style.display = 'block';
+        document.getElementById('updateForm').style.display = 'none';
+
+        // Show the welcome and success text when returning to the dashboard
+        document.getElementById('welcomeText').style.display = 'block';
+        document.getElementById('successText').style.display = 'block';
+
+        document.getElementById('downloadPdfBtn').style.display = 'block';
+		document.getElementById('downloadPdfBtn2').style.display = 'block';
+
+        // Change the button text back to "Your Account"
+        document.getElementById('editButton').innerText = "Your Account";
+        document.getElementById('editButton').setAttribute("onclick", "editData()");
+    }
+
+    function logout() {
+        // Clear the current user session
+        currentUser = null;
+
+        // Clear the user data from localStorage
+        localStorage.removeItem(currentUser);
+
+        // Hide the dashboard and show the login form
+        document.getElementById('dashboardSection').style.display = 'none';
+        document.getElementById('loginSection').style.display = 'block';
+
+        // Clear login form fields
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+    }
+
+    function goBackToWebsite() {
+        // Apply fade-out effect before redirecting
+        window.location.href = 'index.html';  // Directly redirect to website
+    }
+</script>
+
+<script>
+    // Save data to localStorage when the login button is clicked
+    function saveToLocalStorage() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username && password) {
+            // Save both username and password to localStorage
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+            alert('Credentials saved to localStorage!');
+        } else {
+            alert('Please fill in both fields.');
+        }
+    }
+
+    // Function to display saved localStorage data
+    function displayLocalStorageData() {
+        const storedUsername = localStorage.getItem('username');
+        const storedPassword = localStorage.getItem('password');
+
+        // Example of how to display the data in the console (can be displayed anywhere on the page)
+        console.log('Stored Username: ', storedUsername);
+        console.log('Stored Password: ', storedPassword);
+
+        // If data exists, display it
+        if (storedUsername && storedPassword) {
+            document.getElementById('storedData').innerHTML = `Stored Username: ${storedUsername}<br>Stored Password: ${storedPassword}`;
+        } else {
+            document.getElementById('storedData').innerHTML = 'No data found in localStorage.';
+        }
+    }
+
+    // Automatically show stored data on page load
+    window.onload = function() {
+        displayLocalStorageData();
+    }
+</script>
+
+
+</body>
+</html>

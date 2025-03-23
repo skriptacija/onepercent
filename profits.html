@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>one-percent.trade</title>
+    <link rel="icon" href="https://i.imgur.com/Kp2glQp.png" type="image/x-icon">
+    <meta name='robots' content='max-image-preview:large' />
+
+    <script>
+        if (window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("login.html")) {
+            history.replaceState({}, "", "/");
+        }
+    </script>
+	
+	
+	
+	<video autoplay muted loop id="background-video">
+    <source src="wp-content/uploads/2023/03/5e0082692242619df5246e72cf_v2.mp4" type="video/mp4">
+</video>
+
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+               body {
+    background-color: #181818;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    transition: opacity 1s ease;
+}
+
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1; /* Postavlja video iza ostalog sadržaja */
+}
+
+        /* General container style */
+        .container {
+            background-color: #1c1c1c;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Styling for input fields */
+        .container input {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #555;
+            margin: 10px 0;
+            padding: 12px 15px;
+            font-size: 14px;
+            border-radius: 8px;
+            width: 100%;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .container input:focus {
+            border-color: #ffffff;
+            background-color: #444;
+        }
+
+        /* Styling for buttons */
+        .container button {
+            background: linear-gradient(140deg, #999999 0%, #504f62 100%);
+            color: #fff;
+            font-size: 14px;
+            padding: 12px 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 10px;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            max-width: 250px;
+            transition: background 0.3s ease;
+        }
+
+        .container button:hover {
+            background: linear-gradient(140deg, #999999 0%, #504f62 100%);
+        }
+
+        button.logout {
+            background-color: #000;
+            color: #fff;
+            width: 46%;
+        }
+
+        .userData {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #ddd;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #updateForm {
+            display: none;
+            width: 100%;
+        }
+
+        #downloadPdfBtn {
+            margin-top: 10px;
+            background-color: #e74c3c;
+            border-radius: 8px;
+            padding: 12px;
+            text-transform: uppercase;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            max-width: 250px;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #downloadPdfBtn:hover {
+            background-color: #c0392b;
+        }
+
+        .backButton {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(140deg, #999999 0%, #504f62 100%);
+            color: #fff;
+            font-size: 14px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .backButton:hover {
+            background: linear-gradient(140deg, #999999 0%, #504f62 100%);
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .userData p {
+            margin: 15px 0;
+            font-size: 14px;
+            color: #ddd;
+            background-color: #2d2d2d;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #444;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        td {
+            background-color: #444;
+            color: #ddd;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #3a3a3a;
+        }
+
+        tr:hover td {
+            background-color: #555;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        body, .container, .backButton, .userData, .logout {
+            animation: fadeIn 1s ease;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- "Back to Website" button -->
+<button class="backButton" onclick="goBackToWebsite()">Back to login</button>
+
+<!-- Monthly Profits Table -->
+<div id="profitsSection" class="container">
+    <h2>Monthly Profits</h2>
+	<p style="font-size: 12px; color: #888;">The table below displays the total monthly profit for each month, not counting the profit refund for new members who join the program</p>
+	<br>
+	<p style="font-size: 12px; color: #888;"><b>Each new member, upon joining, receives a 100% return on their investment for the first month (€4000).</b> This is done to ensure that the entry fee and monthly subscription are refunded to you within the first month itself</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Profit (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!----- <tr>
+                <td>January</td>
+                <td>37.13 %</td>
+            </tr> ------>
+			
+			
+            <!----- <tr>
+                <td>February</td>
+                <td>26.30 %</td>
+            </tr> ----->
+			
+			
+            <!----- <tr>
+                <td>March</td>
+                <td></td>
+            </tr> ----->
+			
+			
+             <tr>
+                <td>April</td>
+                <td></td>
+            </tr> 
+			
+			
+            <!----- <tr>
+                <td>May</td>
+                <td>$3100</td>
+            </tr> --->
+			
+			<!----- <tr>
+                <td>June</td>
+                <td>$3100</td>
+            </tr> --->
+			
+			<!----- <tr>
+                <td>July</td>
+                <td>$3100</td>
+            </tr> --->
+			
+			<!----- <tr>
+                <td>August</td>
+                <td>$3100</td>
+            </tr> --->
+			
+			<!----- <tr>
+                <td>September</td>
+                <td>$3100</td>
+            </tr> --->
+			
+			<!----- <tr>
+                <td>October</td>
+                <td>$3100</td>
+            </tr> --->
+			
+			<!----- <tr>
+                <td>November</td>
+                <td>$3100</td>
+            </tr> --->
+			
+			<!----- <tr>
+                <td>December</td>
+                <td>$3100</td>
+            </tr> --->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function goBackToWebsite() {
+        window.location.href = 'login.html';
+    }
+</script>
+
+</body>
+</html>
