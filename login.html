@@ -20,12 +20,6 @@
 
 
     <style>
-	    @media (prefers-color-scheme: light),  
-@media (prefers-color-scheme: dark) {  
-    :root {  
-        color-scheme: only light !important; /* Sprečava promenu teme */  
-    }  
-}
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
         * {
@@ -243,6 +237,13 @@
     </style>
 </head>
 <body>
+
+@media (prefers-color-scheme: light),  
+@media (prefers-color-scheme: dark) {  
+    :root {  
+        color-scheme: only light !important; /* Sprečava promenu teme */  
+    }  
+}
 
 <!-- "Back to Website" button -->
 <button class="backButton" onclick="goBackToWebsite()">Back to Website</button>
