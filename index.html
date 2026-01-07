@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+		<title>one-percent.trade</title>
+		<link rel = "icon" href ="https://i.imgur.com/Kp2glQp.png" 
+        type = "image/x-icon">
+<meta name='robots' content='max-image-preview:large' />
+
+<script>
+    // Provjerava da li je trenutna stranica index.html, login.html, profits.html ili profits-2.html
+    if (window.location.pathname.endsWith("index.html") || 
+        window.location.pathname.endsWith("login.html") || 
+        window.location.pathname.endsWith("profits.html") ||
+        window.location.pathname.endsWith("profits-2.html")) {
+        // Zamjenjuje URL bez ekstenzije ".html" i pokazuje samo domen
+        history.replaceState({}, "", "/");
+    }
+</script>
+
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W9W483B5');</script>
+<!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomama.com</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-W9W483B5
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+ <div id="loader" class="loader"></div>
+    <div class="container" style="display:none;">
+    
+        <div class="video-wrapper">
+            <video autoplay muted loop playsinline id="center-video">
+                <source src="video.mp4" type="video/mp4">
+                <source src="video.webm" type="video/webm">
+                <source src="video.ogv" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <div class="countdown">
+           <h2>NOTICE</h2>
+           <p>This page is temporarily unavailable due to the calculation of the total profit generated in the previous year.</p>
+        </div>
+         <div class="social-media">
+             <!----- <a href="https://www.facebook.com/share/kCUTEDFg9T9AJwkx/?mibextid=LQQJ4d" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/pomama_ostvarivo?igsh=MTl5ODdkdjNrZzRpcQ==" target="_blank"><i class="fab fa-instagram"></i></a> --->
+        </div>
+    </div>
+    
+    <script src="scripts.js@v=1.0.2"></script>
+</body>
+</html>

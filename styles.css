@@ -1,0 +1,111 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+   font-family: 'Montserrat', sans-serif;
+    background-color: black; /* Set background color to black */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loader {
+    display: none; /* Hide the loader since we just want a black background */
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.container {
+    text-align: center;
+    color: white;
+    display: none; /* Hide the container initially */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 720px; /* Max width to keep content at a reasonable size */
+    padding: 20px;
+    box-sizing: border-box;
+}
+.social-media {
+    margin-top: 20px;
+}
+
+.social-media a {
+    color: white; /* Set icon color to white */
+    margin: 0 10px;
+    font-size: 2em;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-media a:hover {
+    color: red; /* Change icon color on hover */
+}
+.video-wrapper {
+    position: relative;
+    width: 80%; /* Adjust the width as needed */
+    max-width: 720px; /* Max width to keep video at reasonable size */
+    margin: 0 auto;
+    background-color: black;
+}
+
+#center-video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.content {
+    margin-top: 20px;
+}
+
+.countdown {
+    margin-top: 20px;
+    color: white; /* Change this if you want the main countdown text color */
+}
+
+#timer {
+    font-size: 2em;
+    color: white; /* Set countdown timer color to red */
+}
+
+/* Additional media queries for responsiveness */
+@media (max-width: 768px) {
+    .video-wrapper {
+        width: 90%; /* Adjust the width as needed */
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    #timer {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-wrapper {
+        width: 100%; /* Full width on very small screens */
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    p {
+        font-size: 0.9em;
+    }
+
+    #timer {
+        font-size: 1.2em;
+    }
+}
